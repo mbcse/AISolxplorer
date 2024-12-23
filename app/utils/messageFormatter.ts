@@ -1,6 +1,38 @@
 // utils/messageFormatter.ts
 import { extractComplexityBadge, extractRiskBadge } from './formatUtils';
 
+
+const formatProgramInteractions = (content: string): string => {
+  if (!content) return '';
+  
+  // Split content into groups (each program interaction is a group of related lines)
+  const interactions = content.split('\n\n').map(group => group.trim()).filter(group => group);
+  
+  return interactions.map(interaction => {
+    const lines = interaction.split('\n')
+      .map(line => line.trim())
+      .filter(line => line);
+    
+    return `
+      <div class="bg-white/90 border border-yellow-200 p-4 mb-3 rounded-lg hover:shadow-md transition-all duration-300">
+        ${lines.map(line => {
+          const [key, value] = line.split(':').map(part => part.trim());
+          if (!value) {
+            return `<div class="text-gray-700 py-1">${key}</div>`;
+          }
+          return `
+            <div class="flex items-start py-1.5 border-b border-gray-100 last:border-0">
+              <span class="text-gray-500 font-medium min-w-[100px]">${key}:</span>
+              <span class="text-gray-700 ml-2">${value}</span>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    `;
+  }).join('');
+};
+
+
 export const formatList = (content: string): string => {
   if (!content) return '';
   return content.split('\n')
@@ -142,7 +174,7 @@ export const formatAssistantMessage = (content: string): string => {
           <span class="mr-3 bg-yellow-100 p-2 rounded-xl">📝</span>
           <span>Program Interactions</span>
         </h3>
-        ${formatList(trimmedSection.replace('PROGRAM INTERACTIONS:', '').trim())}
+        ${formatProgramInteractions(trimmedSection.replace('PROGRAM INTERACTIONS:', '').trim())}
       </div>`;
     }
     else if (trimmedSection.includes('COST ANALYSIS:')) {

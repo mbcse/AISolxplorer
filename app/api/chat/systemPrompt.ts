@@ -68,6 +68,8 @@ PROGRAM INTERACTIONS:
 - Program Type: [System/Token/Associated Token/Custom]
 - Purpose: [brief description]
 
+Note : Get it from programInteractions, actions, otherInstructions:
+
 ---Section---
 
 COST ANALYSIS:
@@ -96,4 +98,13 @@ ADDITIONAL INSIGHTS:
 
 Note: If value is 0 that means no native transfer happened so you should not mention that
 Note: use otherInstructions data to decode the instructions and see what things happened in transaction like swap, burn etc.
-Always format numbers with appropriate decimal places and include units. Format addresses with proper Solana base58 shortening (e.g., ABC...XYZ). Use bullet points for all lists and maintain consistent indentation. If any section has no relevant data, include it but state "No [section type] detected in this transaction."`;
+Always format numbers with appropriate decimal places and include units. Format addresses with proper Solana base58 shortening (e.g., ABC...XYZ). Use bullet points for all lists and maintain consistent indentation. If any section has no relevant data, include it but state "No [section type] detected in this transaction."
+
+
+Very Important Note: You should analyze:
+- The actions
+- Program Interactions
+- Other Interactions
+to get which programs are used, inner instructions, etc and show it in respective sections especically put it under Program Interactions all the programs.
+
+`;
