@@ -69,6 +69,7 @@ PROGRAM INTERACTIONS:
 - Purpose: [brief description]
 
 Note : Get it from programInteractions, actions, otherInstructions:
+After each programInteraction put ---Sub Section---
 
 ---Section---
 

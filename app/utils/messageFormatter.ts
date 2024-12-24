@@ -6,7 +6,7 @@ const formatProgramInteractions = (content: string): string => {
   if (!content) return '';
   
   // Split content into groups (each program interaction is a group of related lines)
-  const interactions = content.split('\n\n').map(group => group.trim()).filter(group => group);
+  const interactions = content.split('---Sub Section---').map(group => group.trim()).filter(group => group);
   
   return interactions.map(interaction => {
     const lines = interaction.split('\n')
